@@ -11,6 +11,8 @@ manager = StudentManager()
 
 
 @app.get("/")
+@app.get("/api")
+@app.get("/api/")
 def home():
     return jsonify({
         "status": "online",
@@ -28,8 +30,9 @@ def home():
     }), 200
 
 
-# POST /students
+# POST /students and POST /api/students
 @app.post("/students")
+@app.post("/api/students")
 def add_student():
     data = request.get_json()
 
@@ -64,8 +67,9 @@ def add_student():
     return jsonify(student.get_details()), 201
 
 
-# GET /students
+# GET /students and GET /api/students
 @app.get("/students")
+@app.get("/api/students")
 def get_students():
     students = manager.get_all_students()
 
@@ -75,8 +79,9 @@ def get_students():
     ]), 200
 
 
-# GET /students/passed
+# GET /students/passed and GET /api/students/passed
 @app.get("/students/passed")
+@app.get("/api/students/passed")
 def get_passed_students():
     students = manager.get_passed_students()
 
@@ -86,8 +91,9 @@ def get_passed_students():
     ]), 200
 
 
-# GET /students/<id>
+# GET /students/<id> and GET /api/students/<id>
 @app.get("/students/<student_id>")
+@app.get("/api/students/<student_id>")
 def get_student(student_id):
     student = manager.find_student(student_id)
 
@@ -99,8 +105,9 @@ def get_student(student_id):
     return jsonify(student.get_details()), 200
 
 
-# PATCH /students/<id>
+# PATCH /students/<id> and PATCH /api/students/<id>
 @app.patch("/students/<student_id>")
+@app.patch("/api/students/<student_id>")
 def update_student(student_id):
     data = request.get_json()
 
@@ -119,8 +126,9 @@ def update_student(student_id):
     return jsonify(student.get_details()), 200
 
 
-# DELETE /students/<id>
+# DELETE /students/<id> and DELETE /api/students/<id>
 @app.delete("/students/<student_id>")
+@app.delete("/api/students/<student_id>")
 def delete_student(student_id):
     deleted = manager.delete_student(student_id)
 
@@ -134,8 +142,9 @@ def delete_student(student_id):
     }), 200
 
 
-# GET /students/stats
+# GET /students/stats and GET /api/students/stats
 @app.get("/students/stats")
+@app.get("/api/students/stats")
 def student_stats():
     return jsonify(manager.get_stats()), 200
 
