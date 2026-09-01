@@ -19,6 +19,7 @@ def home():
         "message": "Student Management API is running on Vercel",
         "endpoints": {
             "GET /": "API root documentation",
+            "GET /test": "Test route to verify API health",
             "GET /students": "Get all students",
             "POST /students": "Add a new student",
             "GET /students/passed": "Get students who passed",
@@ -27,6 +28,18 @@ def home():
             "PATCH /students/<student_id>": "Update student details",
             "DELETE /students/<student_id>": "Delete student"
         }
+    }), 200
+
+
+# GET /test and GET /api/test
+@app.get("/test")
+@app.get("/api/test")
+def test_route():
+    return jsonify({
+        "status": "success",
+        "message": "Test route is working perfectly!",
+        "method": request.method,
+        "path": request.path
     }), 200
 
 

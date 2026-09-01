@@ -9,6 +9,7 @@ A RESTful API built with **Flask** and configured for serverless deployment on *
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/` | API status and root documentation |
+| `GET` | `/test` | Health test route |
 | `POST` | `/students` | Register a new student |
 | `GET` | `/students` | Get list of all students |
 | `GET` | `/students/passed` | Get list of students who passed (marks &ge; 40) |
@@ -39,6 +40,7 @@ A RESTful API built with **Flask** and configured for serverless deployment on *
 │   └── api_prac/
 │       ├── __init__.py     # Flask application routes
 │       └── student.py      # Student & StudentManager models
+├── app.py                  # Root fallback entry point
 ├── .gitignore
 ├── .python-version         # Python runtime version for Vercel (3.12)
 ├── pyproject.toml
