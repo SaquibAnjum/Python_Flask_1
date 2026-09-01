@@ -2,10 +2,15 @@ from flask import Flask, request, jsonify
 
 try:
     from .student import Student, StudentManager
+    from .routes import basic_bp
 except ImportError:
     from student import Student, StudentManager
+    from routes import basic_bp
 
 app = Flask(__name__)
+
+# Register Blueprints
+app.register_blueprint(basic_bp)
 
 manager = StudentManager()
 
@@ -20,6 +25,9 @@ def home():
         "endpoints": {
             "GET /": "API root documentation",
             "GET /test": "Test route to verify API health",
+            "GET /basic/": "Basic Blueprint root endpoint",
+            "GET /basic/greet": "Basic Blueprint greeting endpoint",
+            "GET /basic/info": "Basic Blueprint info endpoint",
             "GET /students": "Get all students",
             "POST /students": "Add a new student",
             "GET /students/passed": "Get students who passed",
